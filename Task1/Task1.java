@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Task1 {
 
-    public static void FibonacciFunction(int n) {
+    public static void FiboFunction(int n) {
         System.out.println("------------function based approach------------");
         
         long a = 0, b = 1;
@@ -25,9 +25,9 @@ public class Task1 {
         System.out.println("Execution Time: " + duration + " nanoseconds");
     }
 
-    static class FibonacciCalculator {
+    static class fibo {
         
-        public void generate(int n) {
+        public void exec(int n) {
             System.out.println("-------------------class based approach-------------------");
             
             long a = 0, b = 1;
@@ -59,11 +59,11 @@ public class Task1 {
         int count = sc.nextInt();
 
         //call function
-        FibonacciFunction(count);
+        FiboFunction(count);
 
         //call class
-        FibonacciCalculator cal = new FibonacciCalculator();
-        cal.generate(count);
+        fibo cal = new fibo();
+        cal.exec(count);
 
         sc.close();
     }
