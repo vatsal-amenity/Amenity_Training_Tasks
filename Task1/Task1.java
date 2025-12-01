@@ -62,8 +62,8 @@ public class Task1 {
         FibonacciFunction(count);
 
         //call class
-        FibonacciCalculator calculator = new FibonacciCalculator();
-        calculator.generate(count);
+        FibonacciCalculator cal = new FibonacciCalculator();
+        cal.generate(count);
 
         sc.close();
     }
