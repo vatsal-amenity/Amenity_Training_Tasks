@@ -4,7 +4,7 @@ import re
 # validators
 
 def email_validator(email):
-    pattern = r'^[a-zA-Z0-9_\.-]+@[a-zA-Z0-9_\.-]+\.[a-zA-Z0-9_]+$'
+    pattern = r'^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,3}+$'
     if re.match(pattern, email):
         return "valid"
     else:
