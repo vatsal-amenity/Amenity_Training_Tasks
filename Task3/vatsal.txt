@@ -1,0 +1,3 @@
+today is a great day.
+i am task 3 in python because java file oprtion was too hard for me. 
+i learned file opration in python in using google or help of ai.
