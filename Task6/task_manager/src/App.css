@@ -1,4 +1,4 @@
-
+Body & General Styles
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f4f4f9;
@@ -19,7 +19,6 @@ body {
 header h1 { margin-bottom: 5px; color: #2c3e50; }
 header p { color: #7f8c8d; margin-top: 0; }
 
-/* Form Styles */
 .form-container {
   background: #eef2f5;
   padding: 15px;
@@ -28,11 +27,12 @@ header p { color: #7f8c8d; margin-top: 0; }
 }
 
 .task-input {
-  width: 95%;
+  width: 95%; 
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-bottom: 10px;
+  box-sizing: border-box; 
 }
 
 .row { display: flex; gap: 10px; }
@@ -54,44 +54,7 @@ header p { color: #7f8c8d; margin-top: 0; }
   font-weight: bold;
 }
 
-/* Task Card Styles */
-.task-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  border: 1px solid #eee;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
 
-.task-info h4 { margin: 5px 0 0 0; }
-
-.priority-badge {
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: #e74c3c;
-  color: white;
-}
-
-.task-actions button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-left: 5px;
-}
-
-.active-filter {
-  background-color: #333;
-  color: white;
-  border: 2px solid #333;
-}
-
-/* Stats Bar Styles */
 .stats-container {
   display: flex;
   justify-content: space-between;
@@ -117,11 +80,162 @@ header p { color: #7f8c8d; margin-top: 0; }
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #666;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.stat-box.completed .stat-number { color: #27ae60; } /* Green */
-.stat-box.pending .stat-number { color: #e74c3c; }   /* Red */
+.stat-box.completed .stat-number { color: #27ae60; }
+.stat-box.pending .stat-number { color: #e74c3c; }   
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.task-info h4 { margin: 5px 0 0 0; }
+
+.priority-badge {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #e74c3c;
+  color: white;
+}
+
+.task-actions button {
+  display: inline-flex;    
+  justify-content: center; 
+  align-items: center;     
+  width: 35px;             
+  height: 35px;
+  
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 5px;
+  border-radius: 4px;
+  padding: 0; 
+}
+
+.active-filter {
+  background-color: #333 !important; 
+  color: white !important;
+  border: 2px solid #333;
+}
+
+@media (max-width: 600px) {
+
+  .app-container {
+    width: 90%; 
+    margin: 10px auto;
+    padding: 15px;
+  }
+
+
+  .row {
+    flex-direction: column; 
+  }
+
+  .priority-select, .add-btn {
+    width: 100%; 
+    height: 40px;
+  }
+
+ 
+  .stats-container {
+    flex-direction: row; 
+    gap: 5px;
+  }
+  
+  .stat-label {
+      font-size: 0.6rem; 
+  }
+
+ 
+  .task-card {
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px; 
+  }
+
+  .task-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    border-top: 1px solid #eee; 
+    padding-top: 10px;
+  }
+
+  .task-actions button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* --- Filter Bar Styles --- */
+
+.filter-container {
+  display: flex;
+  justify-content: center; 
+  gap: 10px;
+  margin-bottom: 25px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 50px; 
+  border: 1px solid #eee;
+  width: fit-content; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-container button {
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  border-radius: 30px; 
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease; 
+}
+
+.filter-container button:hover {
+  background-color: #e2e6ea;
+  color: #333;
+}
+
+.active-filter {
+  background-color: #333 !important; 
+  color: white !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+}
+
+@media (max-width: 600px) {
+  .filter-container {
+    width: 100%; 
+    border-radius: 12px; 
+    padding: 5px;
+    box-sizing: border-box; 
+  }
+
+  .filter-container button {
+    flex: 1; 
+    padding: 10px 0; 
+    font-size: 0.85rem;
+    border-radius: 8px; 
+  }
+}

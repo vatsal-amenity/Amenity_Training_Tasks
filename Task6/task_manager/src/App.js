@@ -6,6 +6,9 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
 function App(){
+
+  //search
+  const [search, setSearch] = useState('');
   //loacal storage
   const [tasks, setTasks] = useState(()=>{
     const saveTask = localStorage.getItem('myTasks');
@@ -19,10 +22,16 @@ function App(){
   const completedTask = tasks.filter(t => t.completed).length;
   const pendingTask = totalTask - completedTask;   
 
-  const filterTask = tasks.filter((tasks)=> {
-    if(filter === 'Pending') return !tasks.completed;
-    if(filter === 'Completed') return tasks.completed;
-    return true;
+  const filterTask = tasks.filter((task)=> {
+    const match = 
+      filter === 'All' ?true :
+      filter === 'Completed' ? !task.completed :
+      task.completed;
+
+
+      const matchSearch = task.title.toLowerCase().includes(search.toLowerCase());
+
+      return match && matchSearch;
   });
 
   
@@ -66,6 +75,22 @@ function App(){
           pending={pendingTask}
         />
         <TaskForm onAddTask={addTask}/>
+        <div className="search-container" style={{ marginBottom: '15px' }}>
+          <input 
+            type="text"
+            placeholder="Search Task..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+                    width: '100%',
+                    padding: '12px',
+                    borderRadius: '8px',
+                    border: '1px solid #ddd',
+                    fontSize: '1rem',
+                    boxSizing: 'border-box' 
+                }}
+          />
+        </div>
         <FilterBar filter={filter} setFilter={setFilter}></FilterBar>
         <TaskList tasks={filterTask}
                   onDeleteTask={deleteTask} 

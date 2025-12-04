@@ -12,8 +12,8 @@ function TaskItem({task , onDeleteTask, onToggleTask}) {
   };
 
   return (
-    <div className="task-card" style={{opacity: task.completed ? 0.5 : 1}}>
-      <div className="task-info">
+    <div className="task-card" >
+      <div className="task-info" style={{opacity: task.completed ? 0.5 : 1}}>
         <span className="priority-badge high" style={{ backgroundColor: getPriorityColor(task.priority)}}
         >
             {task.priority}
@@ -29,7 +29,8 @@ function TaskItem({task , onDeleteTask, onToggleTask}) {
                 border:'none',
                 padding: '5px 10px',
                 borderRadius: '4px',
-                cursor: 'pointer'}}>{task.completed ? <FaUndo /> : <FaCheck />}</button>
+                alignItems: 'center',
+                cursor: 'pointer'}}>{task.completed ? <FaUndo/> : <FaCheck />}</button>
         <button className="btn-delete" onClick={() => onDeleteTask(task.id)}><MdDelete /></button>
       </div>
     </div>
