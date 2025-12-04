@@ -59,7 +59,8 @@ const Calculate = dt.derive({
     Calculate_Revenue: d => d.Price * d.Quantity
 });
 Calculate.select('OrderID', 'Price', 'Quantity', 'Calculate_Revenue').print();
-
+//8.Convert string-based dates into datetime format
+//not perform
 //9. Extract month or year from a datetime column
 console.log("******************Extract month or year from a datetime column***************");
 const Extract = dt.derive({

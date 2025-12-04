@@ -12,5 +12,5 @@ const sort = dt.orderby('Price')
 sort.print(Infinity);
 
 //2.Sort by multiple columns
-const mulsort = dt.orderby('Region', aq.desc("Price"), aq.desc('Quantity'))
+const mulsort = dt.orderby('Region', aq.desc("Price"))
 mulsort.print(Infinity);
