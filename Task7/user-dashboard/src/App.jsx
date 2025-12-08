@@ -5,12 +5,15 @@ import Login from './pages/Login';
 import RequestReset from './pages/RequestReset';
 import OTP from './pages/OTP';
 import Dashboard from './pages/Dashboard';
+import ResetPassword from './pages/ResetPassword';  
+// import TestConnection from './pages/Registers';
 
 
 
 
 function App() {
   return (
+    // <TestConnection />
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
@@ -19,8 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/request-reset" element={<RequestReset />} />
         <Route path="/otp" element={<OTP />} />
-        
-        {/* Dashboard will come later */}
+        <Route path="/password_reset/:uid/:token" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../api/axiosInstance'; 
+import api from '../api/apifetch'; 
 import '../assets/App.css'; 
 
 const Register = () => {
@@ -46,9 +46,8 @@ const Register = () => {
     data.append('email', formData.email);
     data.append('first_name', formData.first_name);
     data.append('last_name', formData.last_name);
-    data.append('phone', formData.phone);
+    data.append('phone', formData.phone); 
     data.append('password', formData.password);
-    
     data.append('password2', formData.password_2); 
     
     if (formData.profile_pic) {
@@ -56,13 +55,10 @@ const Register = () => {
     }
 
     try {
-      const response = await api.post('/register/', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data', 
-        },
-      });
+      const response = await api.post('/register/', data);
 
       console.log("Registration Success:", response.data);
+      console.log(data);
       alert("Registration Successful!");
       
       navigate('/otp', { state: { email: formData.email } });
@@ -83,7 +79,7 @@ const Register = () => {
              setError(JSON.stringify(err.response.data));
         }
       } else {
-        setError("Network Error: બેકેન્ડ ચાલુ છે કે નહિ તે ચેક કરો.");
+        setError("Backend Network Error:");
       }
     } finally {
       setLoading(false);

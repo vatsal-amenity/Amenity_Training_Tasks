@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../api/apifetch';
 import '../assets/App.css';
 
 const RequestReset = () => {
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Reset Request for:", email);
+    setLoading(true);
+    setMessage('');
+    setError('');
+    try {
+      // 1. send request to backend
+      const response = await api.post('/password_reset/', { email });
+      setMessage("please check your email for the reset link.");
+      
+    } catch (err) {
+      console.error(err);
+      setError("This email is not registered or there is an error.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,7 +51,7 @@ const RequestReset = () => {
             />
           </div>
 
-          <button type="submit" className="btn-submit">Send OTP / Link</button>
+          <button type="submit" className="btn-submit" disabled={loading}>{loading ? "sending..." : "send reset link"}</button>
 
           <div className="full-width" style={{ textAlign: 'center', marginTop: '15px', fontSize: '13px' }}>
             <Link to="/login" style={{ color: '#667eea', textDecoration: 'none' }}>Back to Login</Link>

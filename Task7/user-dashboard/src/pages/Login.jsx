@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../api/axiosInstance"; 
+import api from "../api/apifetch"; 
 import "../assets/App.css";
 
 const Login = () => {
@@ -47,7 +47,7 @@ const Login = () => {
       if (err.response && err.response.status === 403) {
           const errorMsg = JSON.stringify(err.response.data);
           if (errorMsg.includes("verify") || errorMsg.includes("verified")) {
-              alert("તમારું ઈમેલ વેરિફિકેશન બાકી છે. OTP પેજ પર જાઓ.");
+              alert("your verification is pending. go OTP page.");
               navigate('/otp', { state: { email: formData.email } });
               return;
           }
@@ -107,6 +107,11 @@ const Login = () => {
             />
           </div>
 
+          <div className="full-width" style={{ textAlign: 'left', fontSize: "13px", marginTop: "-10px" }}>
+            <Link to="/request-reset" style={{ color: "#667eea", textDecoration: "none" }}>
+              forgot password?
+            </Link>
+          </div>
           
           <div className="full-width" style={{ textAlign: 'right', fontSize: "13px", marginTop: "-10px" }}>
             <Link to="/register" style={{ color: "#667eea", textDecoration: "none" }}>

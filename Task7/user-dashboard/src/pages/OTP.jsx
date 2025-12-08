@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import api from '../api/axiosInstance'; 
+import api from '../api/apifetch'; 
 import '../assets/App.css';
 
 const OTP = () => {
