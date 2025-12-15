@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../api/apifetch'; 
+import { toast ,ToastContainer} from "react-toastify";
 import '../assets/App.css';
 
 const OTP = () => {
@@ -17,7 +18,7 @@ const OTP = () => {
     setLoading(true);
 
     if(!email) {
-        alert("Email not found. Please register again.");
+      toast.error("Email not found. Please register again.");
         setLoading(false);
         return;
     }
@@ -28,20 +29,23 @@ const OTP = () => {
       // API Call - URL 
       const response = await api.post('/verify_otp/', { 
           email: email, 
-          otp: otp 
+          otp: otp
+          
       });
       
+      const successMsg = response?.data?.message || "Email Verified Successfully! Now please Login.";
+      toast.success(successMsg);
       console.log("Success:", response.data);
-      alert("Email Verified Successfully! Now please Login.");
       
       
-      navigate('/login');
+      
+      setTimeout(() => navigate('/login'), 900);
 
     } catch (error) {
-      console.error("OTP Error:", error);
-      alert("Invalid OTP or Verification Failed!");
+      console.error("OTP verification error:", error);
+      toast.error("Invalid OTP or Verification Failed!");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -58,6 +62,7 @@ const OTP = () => {
             <input 
               type="text" maxLength="6" placeholder="Enter 6-digit OTP" 
               style={{ textAlign: 'center', letterSpacing: '5px', fontSize: '20px' }}
+              value={otp}
               onChange={(e) => setOtp(e.target.value)} required 
             />
           </div>
@@ -65,7 +70,8 @@ const OTP = () => {
           <button type="submit" className="btn-submit" style={{ marginTop: '20px' }} disabled={loading}>
             {loading ? "Verifying..." : "Verify"}
           </button>
-        </form>
+          </form>
+          <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </div>
     </div>
   );

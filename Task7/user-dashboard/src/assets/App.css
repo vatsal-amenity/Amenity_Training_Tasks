@@ -5,26 +5,37 @@
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
+  justify-content: center;
 }
 
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px; 
+  /* Dashboard full width mate padding hatavi didhu */
+  padding: 0; 
 }
+.Toastify__toast {
+    justify-content: left;
+    text-align: left;
+}
+
+
+/* =========================================
+   LOGIN / REGISTER / EDIT PROFILE CARD
+   ========================================= */
 
 /* Main Card Wrapper */
 .register-wrapper {
   background: white;
   width: 900px;
-  max-width: 100%; 
+  max-width: 90%; 
   display: flex;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  /* Card ne center ma lavva mate margin auto */
+  margin: 50px auto; 
+  min-height: 550px;
 }
 
 /* Left Side (Design) */
@@ -56,6 +67,7 @@ body {
   flex: 1.5;
   padding: 40px;
   background: #ffffff;
+  padding-top: 90px;
 }
 
 .form-header {
@@ -97,10 +109,8 @@ body {
   padding: 12px 15px;
   border: 1px solid #ccc; 
   border-radius: 8px;
-  
   background: #ffffff; 
   color: #333333;      
-  
   transition: all 0.3s ease;
   font-size: 14px;
   width: 100%;
@@ -117,7 +127,7 @@ body {
   outline: none;
 }
 
-/* Button */
+/* Buttons */
 .btn-submit {
   grid-column: span 2;
   margin-top: 10px;
@@ -134,8 +144,31 @@ body {
 }
 
 .btn-submit:hover {
+  opacity: 0.9;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+}
+
+/* "Back to Dashboard" Button Style */
+.btn-primary {
+    background: transparent;
+    border: 1px solid white;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+.btn-primary:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Profile Preview in Edit Page */
+.profile-preview-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 /* --- MOBILE RESPONSIVE CODE  */
@@ -143,7 +176,7 @@ body {
   .register-wrapper {
     flex-direction: column; 
     height: auto;
-    width: 100%;
+    width: 95%;
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -181,14 +214,15 @@ body {
    DASHBOARD SPECIFIC STYLES
    ========================================= */
 
-
 .dashboard-container {
+  /* Absolute nikalvu safety mate, pan tamaru layout absolute par dependent che */
   position: absolute; 
   left: 0;
+  top: 0; /* Top 0 jaruri che */
   width: 100%;
   min-height: 100vh;
   background-color: #f3f4f6; 
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
 }
 
@@ -268,6 +302,7 @@ body {
   overflow: hidden;
   border: 1px solid #eee;
   animation: fadeIn 0.2s ease;
+  z-index: 1000; /* Dropdown upar lavva */
 }
 
 .menu-item {
