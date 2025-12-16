@@ -14,4 +14,6 @@ RUN npm install -g serve
 
 EXPOSE 5173
 
-CMD ["npm","-s", "run", "dev"]
+# CMD ["npm","-s", "run", "dev","build"]
+# CMD serve -s build
+CMD ["serve","-n", "-l", "5173", "-s", "dist"]
